@@ -1,0 +1,19 @@
+ext.slf4jVersion = '1.7.7'
+ext.groovyVersion = '2.3.1'
+ext.gparsVersion = '1.2.1'
+
+apply plugin: 'groovy'
+apply plugin: 'application'
+mainClassName = 'sample.loadbalancer.Main'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile "org.codehaus.groovy:groovy:$groovyVersion"
+    compile "org.codehaus.gpars:gpars:$gparsVersion"
+
+    compile "org.slf4j:slf4j-api:$slf4jVersion"
+    runtime "org.slf4j:slf4j-simple:$slf4jVersion"
+}
