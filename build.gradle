@@ -1,5 +1,5 @@
 ext.slf4jVersion = '1.7.7'
-ext.groovyVersion = '2.3.1'
+ext.groovyVersion = '2.3.2'
 ext.gparsVersion = '1.2.1'
 
 apply plugin: 'groovy'
@@ -7,7 +7,7 @@ apply plugin: 'application'
 mainClassName = 'sample.loadbalancer.Main'
 
 repositories {
-    mavenCentral()
+    jcenter()
 }
 
 dependencies {
