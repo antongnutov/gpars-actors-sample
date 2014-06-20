@@ -1,7 +1,8 @@
 package sample.loadbalancer
 
 import groovyx.gpars.actor.DefaultActor
-import java.util.PriorityQueue
+import groovyx.gpars.group.DefaultPGroup
+import groovyx.gpars.group.PGroup
 
 /**
  * Load balancer actor (stateful)
@@ -9,7 +10,13 @@ import java.util.PriorityQueue
 class LoadBalancer extends DefaultActor implements Loggable {
     private def tasks = new PriorityQueue<Message>()
     private workers = 0
+    private PGroup group
+
     int maxWorkers
+
+    void afterStart() {
+        group = new DefaultPGroup(maxWorkers)
+    }
 
     @Override
     protected void act() {
@@ -23,7 +30,7 @@ class LoadBalancer extends DefaultActor implements Loggable {
                         if (workers < maxWorkers) {
                             log.debug('Creating new worker ...')
                             workers++
-                            new Worker(balancer: this).start()
+                            new Worker(balancer: this, parallelGroup: group).start()
                         } else {
                             log.debug('All workers are busy')
                         }

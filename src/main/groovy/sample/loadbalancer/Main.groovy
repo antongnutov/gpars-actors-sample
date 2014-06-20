@@ -5,8 +5,8 @@ class Main {
         System.setProperty("org.slf4j.simpleLogger.defaultLogLevel", "debug")
 
         def balancer = new LoadBalancer(maxWorkers: 4).start()
-        
-        10.times {
+
+        100.times {
             balancer << Message.WORK
             Thread.sleep(20L)
         }
