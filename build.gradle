@@ -1,5 +1,5 @@
 ext.slf4jVersion = '1.7.7'
-ext.groovyVersion = '2.3.2'
+ext.groovyVersion = '2.3.3'
 ext.gparsVersion = '1.2.1'
 
 apply plugin: 'groovy'
